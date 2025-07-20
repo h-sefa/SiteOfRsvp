@@ -21,7 +21,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<OrderResponseDto>> getOrders(){
 
         List<OrderResponseDto> listOfOrders = orderService.getOrders();
@@ -30,7 +30,6 @@ public class OrderController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<OrderResponseDto> findOrderById(@PathVariable Long id) {
-
 
 
         OrderResponseDto foundedOrder = orderService.getOrderById(id);

@@ -3,6 +3,7 @@ package com.example.SiteOfRsvp.service;
 import com.example.SiteOfRsvp.dto.OrderDto;
 import com.example.SiteOfRsvp.dto.OrderResponseDto;
 import com.example.SiteOfRsvp.entity.Order;
+import com.example.SiteOfRsvp.exception.ResourceNotFoundException;
 import com.example.SiteOfRsvp.mappers.OrderMapper;
 import com.example.SiteOfRsvp.mappers.OrderResponseMapper;
 import com.example.SiteOfRsvp.mappers.UserMapper;
@@ -52,13 +53,13 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderResponseDto getOrderById(Long id) {
 
-        Optional<Order> foundedOrder =  orderRepository.findById(id);
-        if(foundedOrder.isPresent()){
-            return orderResponseMapper.toDto(foundedOrder.get());
-        }
+        Order foundedOrder = orderRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Not found order with orderId " + id));
 
-        // Hata mekanizması eklenecek.
-        throw new RuntimeException("Order not found");
+        return orderResponseMapper.toDto(foundedOrder);
+
+
+
+
 
     }
 
