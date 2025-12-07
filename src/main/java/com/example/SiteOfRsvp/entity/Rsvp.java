@@ -1,21 +1,44 @@
 package com.example.SiteOfRsvp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "rsvp", schema = "managersvpdb")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"event", "rsvpAnswers"})
 public class Rsvp extends BaseEntity{
-    /*
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @Column(name = "guest_name")
+    private String guestName;
+
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    @JsonIgnore
+    private Event event;
+    //EVENT_ID foreign key olacak !!! VE RSVP_ANSWER GELECEK DÜZENLENECEK
+
+
+    @OneToMany(mappedBy = "rsvp", cascade = CascadeType.ALL)
+    private List<RsvpAnswer> rsvpAnswers;
+
+}
+
+
+/*
     @Table(
     name = "rsvp",
     uniqueConstraints = @UniqueConstraint(columnNames = {"event_id", "guest_name"})
@@ -37,23 +60,6 @@ public class Rsvp extends BaseEntity{
 
 
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "guest_name")
-    private String guestName;
-
-    @ManyToOne
-    @JoinColumn(name = "event_id")
-    private Event event;
-    //EVENT_ID foreign key olacak !!! VE RSVP_ANSWER GELECEK DÜZENLENECCEK
-
-
-    @OneToMany(mappedBy = "rsvp", cascade = CascadeType.ALL)
-    private List<RsvpAnswer> rsvpAnswers;
-
-}
 
 
 

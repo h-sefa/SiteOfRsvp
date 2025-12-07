@@ -76,6 +76,10 @@
 			<artifactId>hibernate-types-60</artifactId> <!-- Spring Boot 3 için -->
 			<version>2.21.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

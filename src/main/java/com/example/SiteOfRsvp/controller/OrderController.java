@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/order")
@@ -21,22 +22,30 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping("/all")
+
+    //Admin erişebilir ayrıca authenticate olan (CUSTOMER da erişsin) ???
+    @GetMapping()
     public ResponseEntity<List<OrderResponseDto>> getOrders(){
 
         List<OrderResponseDto> listOfOrders = orderService.getOrders();
 
         return ResponseEntity.status(HttpStatus.OK).body(listOfOrders);
     }
+    @GetMapping("/order-test")
+    public String getTestOrder(){
+        return "Order-Test ";
+    }
+    //Deneme amaçlı değişiklik
+
     @GetMapping("/{id}")
-    public ResponseEntity<OrderResponseDto> findOrderById(@PathVariable Long id) {
+    public ResponseEntity<OrderResponseDto> findOrderById(@PathVariable UUID id) {
 
 
         OrderResponseDto foundedOrder = orderService.getOrderById(id);
         return ResponseEntity.status(HttpStatus.OK).body(foundedOrder);
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<OrderResponseDto> createOrder(@RequestBody OrderDto orderDto){
 
         OrderResponseDto savedOrderDto = orderService.save(orderDto);
@@ -46,7 +55,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<OrderResponseDto> deleteOrderById(@PathVariable Long id){
+    public ResponseEntity<OrderResponseDto> deleteOrderById(@PathVariable UUID id){
 
         OrderResponseDto deletedOrder = orderService.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).body(deletedOrder);

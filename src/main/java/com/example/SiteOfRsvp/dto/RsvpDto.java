@@ -1,19 +1,28 @@
 package com.example.SiteOfRsvp.dto;
 
+import java.util.UUID;
+
 public class RsvpDto {
 
+    private UUID id;
     private String guestName;
-    private EventDto eventDto;
+    private String eventTitle;
 
     public RsvpDto() {
     }
 
-    public RsvpDto(String guestName, EventDto eventDto) {
+    public RsvpDto(UUID id, String guestName, String eventTitle) {
+        this.id = id;
         this.guestName = guestName;
-        this.eventDto = eventDto;
+        this.eventTitle = eventTitle;
     }
 
     //Getter and Setter
+
+
+    public UUID getId() { return id; }
+
+    public void setId(UUID id) { this.id = id; }
 
     public String getGuestName() {
         return guestName;
@@ -23,12 +32,12 @@ public class RsvpDto {
         this.guestName = guestName;
     }
 
-    public EventDto getEventDto() {
-        return eventDto;
+    public String getEventTitle() {
+        return eventTitle;
     }
 
-    public void setEventDto(EventDto eventDto) {
-        this.eventDto = eventDto;
+    public void setEventTitle(String eventTitle) {
+        this.eventTitle = eventTitle;
     }
 
     //Getter and Setter

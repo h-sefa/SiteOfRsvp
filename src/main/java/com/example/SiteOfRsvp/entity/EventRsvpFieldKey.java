@@ -4,17 +4,18 @@ import jakarta.persistence.Embeddable;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 @Embeddable
 public class EventRsvpFieldKey implements Serializable {
 
-    private Long eventId;
-    private Long eventRsvpFieldId;
+    private UUID eventId;
+    private UUID eventRsvpFieldId;
 
     public EventRsvpFieldKey() {
     }
 
-    public EventRsvpFieldKey(Long eventId, Long eventRsvpFieldId) {
+    public EventRsvpFieldKey(UUID eventId, UUID eventRsvpFieldId) {
         this.eventId = eventId;
         this.eventRsvpFieldId = eventRsvpFieldId;
     }
@@ -22,19 +23,19 @@ public class EventRsvpFieldKey implements Serializable {
 
     //Getter abd Setter
 
-    public Long getEventId() {
+    public UUID getEventId() {
         return eventId;
     }
 
-    public void setEventId(Long eventId) {
+    public void setEventId(UUID eventId) {
         this.eventId = eventId;
     }
 
-    public Long getEventRsvpFieldId() {
+    public UUID getEventRsvpFieldId() {
         return eventRsvpFieldId;
     }
 
-    public void setEventRsvpFieldId(Long eventRsvpFieldId) {
+    public void setEventRsvpFieldId(UUID eventRsvpFieldId) {
         this.eventRsvpFieldId = eventRsvpFieldId;
     }
 

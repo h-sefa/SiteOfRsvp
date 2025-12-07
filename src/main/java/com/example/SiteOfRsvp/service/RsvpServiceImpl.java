@@ -10,10 +10,7 @@ import com.example.SiteOfRsvp.repository.RsvpRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,7 +42,7 @@ public class RsvpServiceImpl implements RsvpService{
         EventResponseDto eventByTitle = eventService.getEventByTitle(title);
 
 
-       List<Long> ids = eventByTitle.getFieldMappings().stream().map(field -> {
+       List<UUID> ids = eventByTitle.getFieldMappings().stream().map(field -> {
             return field.getEventRsvpField().getId();
         }).collect(Collectors.toList());
 
@@ -57,6 +54,12 @@ public class RsvpServiceImpl implements RsvpService{
 
     @Override
     public void saveRsvp(String eventTitle, RsvpRequestDto rsvpRequestDto) {
+
+        /* RsvpRequestDto
+        private String guestName;
+        private List<AnswerDto> answers;
+
+         */
 
 
        //Gelen rsvp cevaplarını rsvpService eventRsvpFieldService ve eventService ı kullanarak Rsvp ve RsvpAnswer entity kayıtlarını yapıyorum.Mapper aracılığı ile entity dönüşümleri gerçekleşiyor.

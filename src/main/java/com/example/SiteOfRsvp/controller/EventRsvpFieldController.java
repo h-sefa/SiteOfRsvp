@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 //SADECE ADMIN ICIN OLACAK
 
@@ -38,7 +39,7 @@ public class EventRsvpFieldController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EventRsvpFieldResponseDto> getRsvpFieldById(@PathVariable Long id){
+    public ResponseEntity<EventRsvpFieldResponseDto> getRsvpFieldById(@PathVariable UUID id){
 
         EventRsvpFieldResponseDto rsvpFieldById = eventRsvpFieldService.getRsvpFieldById(id);
 
@@ -65,14 +66,14 @@ public class EventRsvpFieldController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<EventRsvpFieldResponseDto> updateRsvpField(@RequestBody EventRsvpFieldDto eventRsvpFieldDto, @PathVariable Long id){
+    public ResponseEntity<EventRsvpFieldResponseDto> updateRsvpField(@RequestBody EventRsvpFieldDto eventRsvpFieldDto, @PathVariable UUID id){
 
 
         return ResponseEntity.status(HttpStatus.CREATED).body(eventRsvpFieldService.updateRsvpField(eventRsvpFieldDto, id));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<EventRsvpFieldResponseDto> deleteRsvpField(@PathVariable Long id){
+    public ResponseEntity<EventRsvpFieldResponseDto> deleteRsvpField(@PathVariable UUID id){
 
         EventRsvpFieldResponseDto eventRsvpFieldResponseDto = eventRsvpFieldService.deleteRsvpField(id);
 

@@ -3,8 +3,10 @@ package com.example.SiteOfRsvp.dto;
 import com.example.SiteOfRsvp.entity.FieldType;
 
 import java.util.List;
+import java.util.UUID;
 
 public class EventRsvpFieldResponseDto {
+    private UUID id;
     private String label;
     private FieldType fieldType;
     private Boolean isRequired;
@@ -13,7 +15,8 @@ public class EventRsvpFieldResponseDto {
     public EventRsvpFieldResponseDto() {
     }
 
-    public EventRsvpFieldResponseDto(String label, FieldType fieldType, Boolean isRequired, List<String> options) {
+    public EventRsvpFieldResponseDto(UUID id,String label, FieldType fieldType, Boolean isRequired, List<String> options) {
+        this.id = id;
         this.label = label;
         this.fieldType = fieldType;
         this.isRequired = isRequired;
@@ -23,6 +26,10 @@ public class EventRsvpFieldResponseDto {
 
 
     //Getter and Setter
+
+    public UUID getId(){  return id;  }
+
+    public void  setId(UUID id){  this.id = id;  }
 
     public String getLabel() {
         return label;

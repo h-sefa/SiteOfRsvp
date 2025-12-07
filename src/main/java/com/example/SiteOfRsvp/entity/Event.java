@@ -1,11 +1,14 @@
 package com.example.SiteOfRsvp.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @EqualsAndHashCode(callSuper = true)
@@ -17,8 +20,8 @@ import java.util.List;
 public class Event extends BaseEntity{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     private String title;
 
@@ -30,8 +33,9 @@ public class Event extends BaseEntity{
 
 
     @OneToOne(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Order order;
-    //ORDER_ID FREIGN KEY OLARAK EKLENECEK
+    //ORDER_ID FOREIGN KEY OLARAK EKLENECEK
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<Rsvp> rsvpList;
@@ -45,11 +49,11 @@ public class Event extends BaseEntity{
     //Getter and Setter
 
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -93,5 +97,12 @@ public class Event extends BaseEntity{
 
     public void setFieldMappings(List<EventRsvpFieldMapping> fieldMappings) {
         this.fieldMappings = fieldMappings;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

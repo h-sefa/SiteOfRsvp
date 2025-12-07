@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,7 +35,7 @@ public class EventRsvpFieldServiceImpl implements EventRsvpFieldService{
     }
 
     @Override
-    public EventRsvpFieldResponseDto getRsvpFieldById(Long id) {
+    public EventRsvpFieldResponseDto getRsvpFieldById(UUID id) {
         Optional<EventRsvpField> rsvpFieldbyId = eventRsvpFieldRepository.findById(id);
         if(rsvpFieldbyId.isPresent()){
             return eventRsvpFieldResponseMapper.toDto(rsvpFieldbyId.get());
@@ -68,7 +69,7 @@ public class EventRsvpFieldServiceImpl implements EventRsvpFieldService{
     }
 
     @Override
-    public EventRsvpFieldResponseDto updateRsvpField(EventRsvpFieldDto eventRsvpFieldDto, Long id) {
+    public EventRsvpFieldResponseDto updateRsvpField(EventRsvpFieldDto eventRsvpFieldDto, UUID id) {
 
         Optional<EventRsvpField> foundedRsvpFieldById = eventRsvpFieldRepository.findById(id);
         if(foundedRsvpFieldById.isPresent()){
@@ -86,7 +87,7 @@ public class EventRsvpFieldServiceImpl implements EventRsvpFieldService{
     }
 
     @Override
-    public EventRsvpFieldResponseDto deleteRsvpField(Long id) {
+    public EventRsvpFieldResponseDto deleteRsvpField(UUID id) {
         Optional<EventRsvpField> deletedRsvpFieldbyId = eventRsvpFieldRepository.findById(id);
         EventRsvpFieldResponseDto deletedRsvpFielddto = eventRsvpFieldResponseMapper.toDto(deletedRsvpFieldbyId.get());
         if(deletedRsvpFieldbyId.isPresent()){

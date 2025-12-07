@@ -1,14 +1,16 @@
 package com.example.SiteOfRsvp.dto;
 
+import java.util.UUID;
+
 public class EventRsvpFieldMappingResponseDto {
-    private Long eventId;
-    private Long eventRsvpFieldId;
+    private UUID eventId;
+    private UUID eventRsvpFieldId;
     private Integer fieldOrder;
 
     public EventRsvpFieldMappingResponseDto() {
     }
 
-    public EventRsvpFieldMappingResponseDto(Long eventId, Long eventRsvpFieldId, Integer fieldOrder) {
+    public EventRsvpFieldMappingResponseDto(UUID eventId, UUID eventRsvpFieldId, Integer fieldOrder) {
         this.eventId = eventId;
         this.eventRsvpFieldId = eventRsvpFieldId;
         this.fieldOrder = fieldOrder;
@@ -16,19 +18,19 @@ public class EventRsvpFieldMappingResponseDto {
 
     //Getter and Setter
 
-    public Long getEventId() {
+    public UUID getEventId() {
         return eventId;
     }
 
-    public void setEventId(Long eventId) {
+    public void setEventId(UUID eventId) {
         this.eventId = eventId;
     }
 
-    public Long getEventRsvpFieldId() {
+    public UUID getEventRsvpFieldId() {
         return eventRsvpFieldId;
     }
 
-    public void setEventRsvpFieldId(Long eventRsvpFieldId) {
+    public void setEventRsvpFieldId(UUID eventRsvpFieldId) {
         this.eventRsvpFieldId = eventRsvpFieldId;
     }
 

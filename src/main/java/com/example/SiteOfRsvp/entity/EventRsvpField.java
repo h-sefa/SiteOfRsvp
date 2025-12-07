@@ -1,6 +1,7 @@
 package com.example.SiteOfRsvp.entity;
 
 import com.example.SiteOfRsvp.converter.StringListJsonConverter;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.vladmihalcea.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,10 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "event_rsvp_field", schema = "managersvpdb")
@@ -21,8 +19,8 @@ import java.util.Set;
 public class EventRsvpField {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     private String label;
 
@@ -53,11 +51,11 @@ public class EventRsvpField {
 
     //Getter and Setter
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

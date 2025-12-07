@@ -1,8 +1,13 @@
 package com.example.SiteOfRsvp.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.UUID;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -13,8 +18,8 @@ import lombok.*;
 public class Order extends BaseEntity{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @Column(name = "platform_order_id", unique = true)
     private String platformOrderId;
@@ -28,15 +33,17 @@ public class Order extends BaseEntity{
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "event_id", referencedColumnName = "id")
+    @JsonIgnore
     private Event event;
 
 
     //Getter
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -59,7 +66,7 @@ public class Order extends BaseEntity{
     //Setter
 
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

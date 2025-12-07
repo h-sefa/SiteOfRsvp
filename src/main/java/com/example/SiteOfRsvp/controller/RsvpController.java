@@ -26,6 +26,7 @@ public class RsvpController {
     }
 
 
+    //Davetlilerin rsvp ye cevap vermek için istek attığı(girdiği) endpoint
     @GetMapping("/{title}")
     public List<EventRsvpFieldResponseDto> getAllFieldsForThatRsvp(@PathVariable String title){
 

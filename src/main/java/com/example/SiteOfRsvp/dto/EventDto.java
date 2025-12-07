@@ -5,8 +5,10 @@ import com.example.SiteOfRsvp.entity.EventRsvpFieldMapping;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class EventDto {
+    private UUID id;
     private String title;
     private LocalDateTime expiresAt;
     private Boolean isPublished;
@@ -19,7 +21,8 @@ public class EventDto {
     public EventDto() {
     }
 
-    public EventDto(String title, LocalDateTime expiresAt, Boolean isPublished) {
+    public EventDto(UUID id, String title, LocalDateTime expiresAt, Boolean isPublished) {
+        this.id = id;
         this.title = title;
         this.expiresAt = expiresAt;
         this.isPublished = isPublished;
@@ -33,6 +36,15 @@ public class EventDto {
     }
 
     //Getter and Setter
+
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

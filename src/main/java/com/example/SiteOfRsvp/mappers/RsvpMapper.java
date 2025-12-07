@@ -18,16 +18,15 @@ import org.mapstruct.Named;
 @Mapper(componentModel = "spring")
 public interface RsvpMapper {
 
+    @Mapping(target = "eventTitle", source = "event.title") // ✅ event → eventTitle
     RsvpDto toDto(Rsvp rsvp);
 
-
-    @Mapping(source = "label", target = "event",  qualifiedByName = "foundEventWithLabel")
+    @Mapping(source = "label", target = "event", qualifiedByName = "foundEventWithLabel")
     @Mapping(source = "rsvpRequestDto.guestName", target = "guestName")
-    Rsvp toEntity (String label, RsvpRequestDto rsvpRequestDto, @Context EventService eventService);
+    Rsvp toEntity(String label, RsvpRequestDto rsvpRequestDto, @Context EventService eventService);
 
     @Named("foundEventWithLabel")
     default Event foundEventWithLabel(String label, @Context EventService eventService) {
         return eventService.getEventByTitleForOtherServiceCommunication(label);
-
     }
 }

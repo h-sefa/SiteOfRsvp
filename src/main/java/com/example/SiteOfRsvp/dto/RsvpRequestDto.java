@@ -5,6 +5,9 @@ import java.util.List;
 
 public class RsvpRequestDto {
 
+
+    //
+
     private String guestName;
     private List<AnswerDto> answers;
 

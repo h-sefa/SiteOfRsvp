@@ -1,5 +1,6 @@
 package com.example.SiteOfRsvp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,11 +13,13 @@ public class EventRsvpFieldMapping {
     @ManyToOne
     @MapsId("eventId")
     @JoinColumn(name = "event_id")
+    @JsonIgnore
     private Event event;
 
     @ManyToOne
     @MapsId("eventRsvpFieldId")
     @JoinColumn(name = "event_rsvp_field_id")
+    @JsonIgnore
     private EventRsvpField eventRsvpField;
 
     @Column(name = "field_order")
